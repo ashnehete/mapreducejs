@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-  <meta charset="utf-8">
-  <title>mapreducejs</title>
-  <meta name="description" content="">
-  <meta name="author" content="Aashish Nehete">
+    <meta charset="utf-8">
+    <title>mapreducejs</title>
+    <meta name="description" content="A simple tutorial to understand map/reduce using js">
+    <meta name="author" content="Aashish Nehete">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-  <link rel="stylesheet" href="/css/normalize.css">
-  <link rel="stylesheet" href="/css/skeleton.css">
-
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/skeleton.css">
+    <link rel="stylesheet" href="/css/custom.css">
 </head>
-<body>
 
+<body>
+    <div class="container">
+        <h1>MapReduce Tutorial with JavaScript</h1>
+        <div class="row">
+            <div class="six columns">
+                <p>Input</p>
+                <div id="input-editor"></div>
+
+                <p>Mapper</p>
+                <div id="mapper-editor"></div>
+
+                <p>Reducer</p>
+                <div id="reducer-editor"></div>
+                <br>
+                <button id="run">Run</button>
+            </div>
+            <div class="six columns">
+                <div id="output-editor"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/script.js"></script>
 </body>
+
 </html>

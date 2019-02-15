@@ -15,7 +15,7 @@ let inputText = 'word\nword\nword'
 let mapperText = 'function mapper(input, context)\n{\n\t\n\treturn context\n}'
 mapperText = `function mapper(input, context)
 {
-	for (let word of words)
+	for (let word of input)
 	    context.write(word, 1)
 	return context
 }`
@@ -77,7 +77,7 @@ run.addEventListener('click', event => {
 // Word Count Mapper
 function mapper(input, context)
 {
-	for (let word of words)
+	for (let word of input)
 	    context.write(word, 1)
 	return context
 }

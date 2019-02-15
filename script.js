@@ -11,12 +11,17 @@ class Context {
     }
 }
 
-let inputText = 'word\nword\nword'
+let inputText = `word
+word
+aashish
+new
+new
+word
+this`
 let mapperText = 'function mapper(input, context)\n{\n\t\n\treturn context\n}'
 mapperText = `function mapper(input, context)
 {
-	for (let word of input)
-	    context.write(word, 1)
+	context.write(input, 1)
 	return context
 }`
 let reducerText = `function reducer(key, list, context)
@@ -55,36 +60,44 @@ run.addEventListener('click', event => {
     let input = inputEditor.getValue().split('\n')
 
     let mapper = new Function(`return(${funcMap})`)()
-    let context = mapper(input, new Context())
-    console.log(context)
-    
-    outputEditor.setValue(JSON.stringify(context.list, null, '\t'))
+    let mapperContext = mapperExecute(mapper, input)
+    console.log(mapperContext)
+
+    outputEditor.setValue(JSON.stringify(mapperContext.list, null, '\t'))
     outputEditor.selection.moveTo(0, 0)
-    
+
     let reducer = new Function(`return(${funcRed})`)()
-    let contexts = []
-    for (let key in context.list) {
-        contexts.push(reducer(key, context.list[key], new Context()))
-        console.log(key, context.list[key])
-    }
-    let list = []
-    for (let c of contexts) list.push(c.list)
-    console.log(list)
-    outputEditor.setValue(JSON.stringify(list, null, '\t'))
+    let reducerContext = reducerExecute(reducer, mapperContext.list)
+    console.log(reducerContext)
+    
+    outputEditor.setValue(JSON.stringify(reducerContext.list, null, '\t'))
     outputEditor.selection.moveTo(0, 0)
 })
 
+function mapperExecute(mapper, input) {
+    let context = new Context()
+    for (let line of input) {
+        mapper(line, context)
+    }
+    return context
+}
+
+function reducerExecute(reducer, map) {
+    let context = new Context()
+    for (let key in map) {
+        reducer(key, map[key], context)
+    }
+    return context
+}
+
 // Word Count Mapper
-function mapper(input, context)
-{
-	for (let word of input)
-	    context.write(word, 1)
-	return context
+function mapper(input, context) {
+    context.write(input, 1)
+    return context
 }
 
 // Word Count Reducer
-function reducer(key, list, context)
-{
+function reducer(key, list, context) {
     context.write(key, list.length)
     return context
 }

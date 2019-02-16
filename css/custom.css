@@ -1,8 +1,0 @@
-body {
-    font-family: 'Raleway', sans-serif;
-}
-
-#input-editor, #mapper-editor, #reducer-editor, #mapper-output, #reducer-output {
-    width: 100%;
-    height: 150px;
-}

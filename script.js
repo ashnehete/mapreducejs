@@ -48,12 +48,16 @@ reducerEditor.session.setMode('ace/mode/javascript')
 reducerEditor.setValue(reducerText)
 reducerEditor.selection.moveTo(2, 1)
 
-let outputEditor = ace.edit('output-editor')
-outputEditor.setTheme('ace/theme/dracula')
-outputEditor.session.setMode('ace/mode/json')
-outputEditor.setReadOnly(true)
+let mapperOutput = ace.edit('mapper-output')
+mapperOutput.setTheme('ace/theme/dracula')
+mapperOutput.session.setMode('ace/mode/json')
+mapperOutput.setReadOnly(true)
 
-let btnRun = document.getElementById('run')
+let reducerOutput = ace.edit('reducer-output')
+reducerOutput.setTheme('ace/theme/dracula')
+reducerOutput.session.setMode('ace/mode/json')
+reducerOutput.setReadOnly(true)
+
 run.addEventListener('click', event => {
     let funcMap = mapperEditor.getValue()
     let funcRed = reducerEditor.getValue()
@@ -63,16 +67,17 @@ run.addEventListener('click', event => {
     let mapperContext = mapperExecute(mapper, input)
     console.log(mapperContext)
 
-    outputEditor.setValue(JSON.stringify(mapperContext.list, null, '\t'))
-    outputEditor.selection.moveTo(0, 0)
+    mapperOutput.setValue(JSON.stringify(mapperContext.list, null, '\t'))
+    mapperOutput.selection.moveTo(0, 0)
 
     let reducer = new Function(`return(${funcRed})`)()
     let reducerContext = reducerExecute(reducer, mapperContext.list)
     console.log(reducerContext)
     
-    outputEditor.setValue(JSON.stringify(reducerContext.list, null, '\t'))
-    outputEditor.selection.moveTo(0, 0)
+    reducerOutput.setValue(JSON.stringify(reducerContext.list, null, '\t'))
+    reducerOutput.selection.moveTo(0, 0)
 })
+
 
 function mapperExecute(mapper, input) {
     let context = new Context()

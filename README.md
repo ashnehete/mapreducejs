@@ -1,3 +1,3 @@
 # mapreducejs
 
-A simple tutorial to understand map/reduce using js
+This is just a simple interactive tutorial in JavaScript to understand the concept of map/reduce.

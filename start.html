@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>mapreducejs</title>
+    <meta name="description" content="A simple tutorial to understand map/reduce using js">
+    <meta name="author" content="Aashish Nehete">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            text-align: justify;
+            background-color: #008080;
+            color: white;
+            font-size: 2rem;
+        }
+
+        a,
+        a.button {
+            text-decoration: none;
+            color: white;
+            border-color: white;
+            transition: all 100ms ease-in-out;
+        }
+
+        a:hover,
+        a.button:hover {
+            color: #00c8c8;
+            border-color: #00c8c8;
+        }
+
+        code {
+            background-color: #00c8c8;
+            border-radius: 4px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <hr>
+        <h1>MapReduce</h1>
+        <hr>
+        <p>
+            MapReduce is made up of 2 major parts: map & reduce<br>
+            We can write mappers and reducers to analyse large quantities of data.<br>
+        </p>
+        <p>The first stage is the mapper.</p>
+        <p><strong>What is a Mapper?</strong></p>
+        <p>
+            The raw input is fed to the mapper line by line to be processed into smaller chunks. The primary function of
+            a mapper is to group similar data by a key. For each input line the mapper function is run. The mapper
+            function then has the task to assign a key and value according to the input. After all the input lines are
+            processed, values with the same key are grouped together into a list.
+        </p>
+        <p>Output of a mapper is: <code>(key, list(values))</code>.</p>
+        <p>The output of a mapper is then fed to a reducer which is the second stage now.</p>
+        <p><strong>What is a Reducer?</strong></p>
+        <p>
+            The reducer item is run for every unique key in the mapper output and its primary function is to operate on
+            the list of values associated with the key. The output of a reducer is again a key-value pair which can be
+            according to user specifications.
+        </p>
+        <p><strong>So why MapReduce?</strong></p>
+        <p>
+            The biggest advantage of MapReduce is that all the operations can run concurrently across a distributed
+            architecture. Several lines of input can be processed by the mapper at a single time, and once the mapper
+            has completed operations, several reducers run concurrently on the mapper output.
+        </p>
+        Let's checkout an example to understand better:
+        <a href="tutorials.html" class="button">Word Counter</a>
+        <hr>
+    </div>
+</body>
+
+</html>

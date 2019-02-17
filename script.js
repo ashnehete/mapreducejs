@@ -4,7 +4,7 @@ class Context {
     }
 
     write(key, value) {
-        if (!key || typeof key !== 'string') throw new Error('Invalid key')
+        if (!key) throw new Error('Invalid key')
         if (!this.list.hasOwnProperty(key))
             this.list[key] = []
         this.list[key].push(value)
